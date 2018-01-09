@@ -1,29 +1,29 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
     ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot
 } from '@angular/router';
 
 import { ILoadScriptOptions, loadModules, loadScript } from 'esri-loader';
 
+@Injectable()
 export class EsriLoaderGuard implements CanActivate {
 
-    constructor(
-        @Inject('ESRI_LOADER_OPTIONS') private options: EsriLoaderOptions
-    ) { }
+    constructor() { }
 
     public async canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Promise<boolean> {
         try {
+            const options = this.getOptions();
             // load esri script and dojoConfig;
             await loadScript({
-                url: this.options.url,
-                dojoConfig: this.options.dojoConfig
+                url: options.url,
+                dojoConfig: options.dojoConfig
             });
             // add cors enabled hosts
             const [config] = await loadModules(['esri/config']);
-            for (const host of this.options.corsEnabledHosts) {
+            for (const host of options.corsEnabledHosts) {
                 config.request.corsEnabledServers.push(host);
             }
             return true;
@@ -34,10 +34,25 @@ export class EsriLoaderGuard implements CanActivate {
         }
     }
 
+    public getOptions(): EsriGuardOptions {
+        return {
+            url: 'https://js.arcgis.com/4.6/init.js',
+            dojoConfig: {
+                locale: 'zh-cn',
+                async: true
+            },
+            corsEnabledHosts: [
+            ]
+        };
+    }
+
 }
 
-export interface EsriLoaderOptions extends ILoadScriptOptions {
+export interface EsriGuardOptions extends ILoadScriptOptions {
+    corsEnabledHosts: CorsEnabledHost[];
+}
 
-    corsEnabledHosts: Array<{ host: string, withCredentials: boolean}>;
-
+export interface CorsEnabledHost {
+    host: string;
+    withCredentials: boolean;
 }

@@ -1,2 +1,7 @@
-export * from './services/esri-map.service';
-export * from './services/esri-loader.guard';
+export {
+    EsriMapService, EsriWrapper
+} from './services/esri-map.service';
+
+export {
+    EsriLoaderGuard
+} from './services/esri-loader.guard';
