@@ -1,0 +1,33 @@
+{
+  "name": "ng-esri-service",
+  "version": "1.0.5",
+  "description": "ArcGIS JS API service for Angular",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
+  "scripts": {
+    "publish": "rm -rf build && npm run build && cp src/package.json build/package.json && npm publish build",
+    "build": "tsc -p tsconfig.json",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beginor/ng-esri-service.git"
+  },
+  "author": "beginor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/beginor/ng-esri-service/issues"
+  },
+  "homepage": "https://github.com/beginor/ng-esri-service#readme",
+  "dependencies": {
+    "@angular/core": "^5.0.0",
+    "@angular/router": "^5.0.0",
+    "esri-loader": "^2.0.0",
+    "tslib": "~1.8.1"
+  },
+  "devDependencies": {
+    "@types/arcgis-js-api": "^4.6.0",
+    "tslint": "^5.8.0",
+    "typescript": "~2.4.2"
+  }
+}
