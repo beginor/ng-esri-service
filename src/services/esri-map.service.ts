@@ -545,7 +545,7 @@ export class EsriMapService {
         return { val: mapImage };
     }
 
-    public async createGraphicsLayers(
+    public async createGraphicsLayer(
         props: __esri.GraphicsLayerProperties
     ): Promise<EsriWrapper<__esri.GraphicsLayer>> {
         const [GraphicsLayer] = await loadModules([
