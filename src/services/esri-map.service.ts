@@ -515,6 +515,46 @@ export class EsriMapService {
         return expand;
     }
 
+    public async createImageLayer(
+        props: __esri.ImageryLayerProperties
+    ): Promise<EsriWrapper<__esri.ImageryLayer>> {
+        const [ImageryLayer] = await loadModules([
+            'esri/layers/ImageryLayer'
+        ]);
+        const imageLayer = new ImageryLayer(props);
+        return { val: imageLayer };
+    }
+
+    public async createMapImage(
+        props: __esri.MapImageProperties
+    ): Promise<EsriWrapper<__esri.MapImage>> {
+        const [MapImage] = await loadModules([
+            'esri/layers/support/MapImage'
+        ]);
+        const mapImage = new MapImage(props);
+        return { val: mapImage };
+    }
+
+    public async createMapImageLayer(
+        props: __esri.MapImageLayerProperties
+    ): Promise<EsriWrapper<__esri.MapImageLayer>> {
+        const [MapImageLayer] = await loadModules([
+            'esri/layers/MapImageLayer'
+        ]);
+        const mapImage = new MapImageLayer(props);
+        return { val: mapImage };
+    }
+
+    public async createGraphicsLayers(
+        props: __esri.GraphicsLayerProperties
+    ): Promise<EsriWrapper<__esri.GraphicsLayer>> {
+        const [GraphicsLayer] = await loadModules([
+            'esri/layers/GraphicsLayer'
+        ]);
+        const graphicsLayers = new GraphicsLayer(props);
+        return { val: graphicsLayers };
+    }
+
 }
 
 export interface EsriWrapper<T> {
