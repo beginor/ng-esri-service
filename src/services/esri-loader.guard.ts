@@ -17,10 +17,7 @@ export class EsriLoaderGuard implements CanActivate {
         try {
             const options = this.getOptions();
             // load esri script and dojoConfig;
-            await loadScript({
-                url: options.url,
-                dojoConfig: options.dojoConfig
-            });
+            await loadScript(options);
             // add cors enabled hosts
             const [config] = await loadModules(['esri/config']);
             for (const host of options.corsEnabledHosts) {
