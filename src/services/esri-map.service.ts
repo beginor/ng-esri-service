@@ -555,6 +555,26 @@ export class EsriMapService {
         return { val: graphicsLayers };
     }
 
+    public async createWebTileLayer(
+        props: __esri.WebTileLayerProperties
+    ): Promise<EsriWrapper<__esri.WebTileLayer>> {
+        const [WebTileLayer] = await loadModules([
+            'esri/layers/WebTileLayer'
+        ]);
+        const layer = new WebTileLayer(props);
+        return { val: layer };
+    }
+
+    public async createBasemap(
+        props: __esri.BasemapProperties
+    ): Promise<EsriWrapper<__esri.Basemap>> {
+        const [Basemap] = await loadModules([
+            'esri/Basemap'
+        ]);
+        const layer = new Basemap(props);
+        return { val: layer };
+    }
+
 }
 
 export interface EsriWrapper<T> {
