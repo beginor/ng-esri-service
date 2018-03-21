@@ -515,14 +515,14 @@ export class EsriMapService {
         return expand;
     }
 
-    public async createImageLayer(
+    public async createImageryLayer(
         props: __esri.ImageryLayerProperties
     ): Promise<EsriWrapper<__esri.ImageryLayer>> {
         const [ImageryLayer] = await loadModules([
             'esri/layers/ImageryLayer'
         ]);
-        const imageLayer = new ImageryLayer(props);
-        return { val: imageLayer };
+        const layer = new ImageryLayer(props);
+        return { val: layer };
     }
 
     public async createMapImage(
@@ -531,8 +531,8 @@ export class EsriMapService {
         const [MapImage] = await loadModules([
             'esri/layers/support/MapImage'
         ]);
-        const mapImage = new MapImage(props);
-        return { val: mapImage };
+        const image = new MapImage(props);
+        return { val: image };
     }
 
     public async createMapImageLayer(
@@ -541,8 +541,8 @@ export class EsriMapService {
         const [MapImageLayer] = await loadModules([
             'esri/layers/MapImageLayer'
         ]);
-        const mapImage = new MapImageLayer(props);
-        return { val: mapImage };
+        const layer = new MapImageLayer(props);
+        return { val: layer };
     }
 
     public async createGraphicsLayer(
@@ -551,8 +551,8 @@ export class EsriMapService {
         const [GraphicsLayer] = await loadModules([
             'esri/layers/GraphicsLayer'
         ]);
-        const graphicsLayers = new GraphicsLayer(props);
-        return { val: graphicsLayers };
+        const layer = new GraphicsLayer(props);
+        return { val: layer };
     }
 
     public async createWebTileLayer(
@@ -571,7 +571,17 @@ export class EsriMapService {
         const [Basemap] = await loadModules([
             'esri/Basemap'
         ]);
-        const layer = new Basemap(props);
+        const basemap = new Basemap(props);
+        return { val: basemap };
+    }
+
+    public async createFeatureLayer(
+        props: __esri.FeatureLayerProperties
+    ): Promise<EsriWrapper<__esri.FeatureLayer>> {
+        const [FeatureLayer] = await loadModules([
+            'esri/layers/FeatureLayer'
+        ]);
+        const layer: __esri.FeatureLayer = new FeatureLayer(props);
         return { val: layer };
     }
 
