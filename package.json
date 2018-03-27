@@ -1,6 +1,6 @@
 {
   "name": "ng-esri-service",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "ArcGIS JS API service for Angular",
   "main": "build/index.js",
   "typings": "build/index.d.ts",

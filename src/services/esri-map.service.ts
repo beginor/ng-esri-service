@@ -585,6 +585,16 @@ export class EsriMapService {
         return { val: layer };
     }
 
+    public async parseFeatureSetFromJson(
+        json: any
+    ): Promise<__esri.FeatureSet> {
+        const [FeatureSet] = await loadModules([
+            'esri/tasks/support/FeatureSet'
+        ]);
+        const result: __esri.FeatureSet = FeatureSet.fromJSON(json);
+        return result;
+    }
+
 }
 
 export interface EsriWrapper<T> {
