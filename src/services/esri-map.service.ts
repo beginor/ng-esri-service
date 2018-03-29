@@ -595,6 +595,16 @@ export class EsriMapService {
         return result;
     }
 
+    public async createCollection<T>(
+        items: T[]
+    ): Promise<__esri.Collection<T>> {
+        const [Collection] = await loadModules([
+            'esri/core/Collection'
+        ]);
+        const result: __esri.Collection = new Collection(items);
+        return result;
+    }
+
 }
 
 export interface EsriWrapper<T> {
