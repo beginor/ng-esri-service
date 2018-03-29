@@ -100,18 +100,12 @@ export class EsriMapService {
     ): Promise<__esri.LocalBasemapsSource> {
         const basemapArr: __esri.Basemap[] = [];
         // tslint:disable-next-line:max-line-length
-        const [Basemap, TileLayer, LocalBasemapsSource] = await loadModules([
+        const [Basemap, LocalBasemapsSource] = await loadModules([
             'esri/Basemap',
-            'esri/layers/TileLayer',
             'esri/widgets/BasemapGallery/support/LocalBasemapsSource'
         ]);
         //
         for (const prop of props) {
-            let baseLayers = prop.baseLayers as any[];
-            baseLayers = baseLayers.map(
-                opt => new TileLayer(opt)
-            );
-            prop.baseLayers = baseLayers;
             const basemap = new Basemap(prop);
             basemapArr.push(basemap);
         }
@@ -603,6 +597,16 @@ export class EsriMapService {
         ]);
         const result: __esri.Collection = new Collection(items);
         return result;
+    }
+
+    public async createTileLayer(
+        props: __esri.TileLayerProperties
+    ): Promise<EsriWrapper<__esri.TileLayer>> {
+        const [TileLayer] = await loadModules([
+            'esri/layers/TileLayer'
+        ]);
+        const result: __esri.TileLayer = new TileLayer(props);
+        return { val: result };
     }
 
 }
