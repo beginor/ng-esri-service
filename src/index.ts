@@ -1,3 +1,1 @@
-export {
-    EsriMapService, EsriWrapper
-} from './services/esri-map.service';
+export * from './services/esri-map.service';
